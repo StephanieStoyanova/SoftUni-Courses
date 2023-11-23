@@ -1,5 +1,7 @@
-function pascalCaseSplitter() {
+function pascalCaseSplitter(inputString) {
+    let words = inputString.split(/(?=[A-Z])/).join(', ');
 
+    console.log(words);
 }
 
 pascalCaseSplitter('SplitMeIfYouCanHaHaYouCantOrYouCan');
