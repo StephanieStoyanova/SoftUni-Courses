@@ -1,4 +1,34 @@
-function race() {
+function race(input) {
+    let participants = input.shift().split(", ");
+    let command = input.shift();
+
+    let results = {};
+
+    participants.forEach(participant => results[participant] = 0);
+
+    let letterPattern = /[a-z]/gi;
+    let digitPattern = /\d/g;
+
+    while (command != "end of race") {
+        let letterMatches = command.match(letterPattern);
+        let name = letterMatches.join("");
+
+        let digitMatches = command.match(digitPattern);
+        let distance = digitMatches.map(Number).reduce((acc, val) => acc + val);
+
+        if (name in results) {
+            results[name] += distance;
+        }
+
+        command = input.shift();
+    }
+
+    let sortedResults = Object.entries(results).sort((a, b) => b[1] - a[1]);
+
+
+    console.log(`1st place: ${sortedResults[0][0]}`);
+    console.log(`2nd place: ${sortedResults[1][0]}`);
+    console.log(`3rd place: ${sortedResults[2][0]}`);
 
 }
 
